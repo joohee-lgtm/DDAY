@@ -1,6 +1,7 @@
-import qs from 'query-string';
+
 import './style.css';
 import jae from './jrong.jpg';
+import {filterDuplicatedQuery} from './util.js';
 
 const eventDateArea = document.querySelector("#event_area");
 const remainDateArea = document.querySelector("#remain_area");
@@ -13,16 +14,6 @@ const HOUR_UNIT = 24;
 const DAY_TO_SEC = HOUR_UNIT * MINUTE_UNIT * SECOND_UNIT;
 const HOUR_TO_SEC = MINUTE_UNIT * SECOND_UNIT;
 const MINUTE_TO_SEC = MINUTE_UNIT;
-
-const filterDuplicatedQuery = (queryName) => {
-	const query = (qs.parse(window.location.search) || {})[queryName];
-
-	if(Array.isArray(query)){
-
-		return query[0];
-	}
-	return query;
-}
 
 const getDateTime = () => {
 	const timeFromQuery = filterDuplicatedQuery("time");
