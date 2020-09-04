@@ -1,5 +1,6 @@
 import qs from 'query-string';
 import './style.css';
+import jae from './jrong.jpg';
 
 const eventDateArea = document.querySelector("#event_area");
 const remainDateArea = document.querySelector("#remain_area");
@@ -53,7 +54,7 @@ const parseTimeStamp = (milsec) => {
 }
 
 const displayEventDate = (eventDate) => {
-	eventDateArea.innerHTML = `<span>${eventDate} 날짜 까지</span>`;
+	eventDateArea.innerHTML = `<span>${eventDate} 날짜 까지<img src="${jae}" /></span>`;
 	
 }
 

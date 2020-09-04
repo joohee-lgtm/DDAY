@@ -1,3 +1,14 @@
 #event_area {
   background-color: yellow;
 }
+
+#event_area img {
+  width: 200px;
+}
+
+.welcome {
+  width: 300px;
+  height: 300px;
+  background: url("./sally_clap.gif");
+  background-repeat: no-repeat;
+}
