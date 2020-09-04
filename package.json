@@ -2,7 +2,7 @@
   "name": "DDAY",
   "version": "1.0.0",
   "description": "디데이 계산기",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
