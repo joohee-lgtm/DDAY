@@ -1,4 +1,5 @@
 import qs from 'query-string';
+import './style.css';
 
 const eventDateArea = document.querySelector("#event_area");
 const remainDateArea = document.querySelector("#remain_area");
