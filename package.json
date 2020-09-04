@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/real-dot-joohee/DDAY#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.2.2",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
