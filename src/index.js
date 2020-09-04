@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 const eventDateArea = document.querySelector("#event_area");
 const remainDateArea = document.querySelector("#remain_area");
 
@@ -10,12 +12,19 @@ const DAY_TO_SEC = HOUR_UNIT * MINUTE_UNIT * SECOND_UNIT;
 const HOUR_TO_SEC = MINUTE_UNIT * SECOND_UNIT;
 const MINUTE_TO_SEC = MINUTE_UNIT;
 
+const filterDuplicatedQuery = (queryName) => {
+	const query = (qs.parse(window.location.search) || {})[queryName];
+
+	if(Array.isArray(query)){
+
+		return query[0];
+	}
+	return query;
+}
+
 const getDateTime = () => {
-	debugger;
-	const timeFromQuery = window.location.search;
-	const parseExp = /(?<=[time\=])\d+/g
-	const matchTarget = timeFromQuery.match(parseExp) || [];
-	const dateTime = new Date(parseInt(matchTarget[0], 10));
+	const timeFromQuery = filterDuplicatedQuery("time");
+	const dateTime = new Date(parseInt(timeFromQuery, 10));
 
 	if(isNaN(dateTime.getTime())) {
 		return null;
@@ -44,6 +53,7 @@ const parseTimeStamp = (milsec) => {
 
 const displayEventDate = (eventDate) => {
 	eventDateArea.innerHTML = `<span>${eventDate} 날짜 까지</span>`;
+	
 }
 
 
