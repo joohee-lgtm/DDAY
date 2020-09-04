@@ -3,8 +3,8 @@ import './style.css';
 import jae from './jrong.jpg';
 import {filterDuplicatedQuery} from './util.js';
 
-const eventDateArea = document.querySelector("#event_area");
-const remainDateArea = document.querySelector("#remain_area");
+let eventDateArea;
+let remainDateArea;
 
 const MIL_SECOND_UNIT = 1000;
 const SECOND_UNIT = 60;
@@ -83,5 +83,14 @@ const init = () => {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
+	const basicElement = `
+	<div class="welcome"></div>
+    <p id="event_area"></p>
+	<p id="remain_area"></p>`;
+	
+	document.body.insertAdjacentHTML('afterbegin', basicElement)
+	eventDateArea = document.querySelector("#event_area");
+	remainDateArea = document.querySelector("#remain_area");
+	
 	init();
 });
