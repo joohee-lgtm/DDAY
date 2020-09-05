@@ -92,6 +92,6 @@ window.addEventListener("DOMContentLoaded", function() {
 	eventDateArea = document.querySelector("#event_area");
 	remainDateArea = document.querySelector("#remain_area");
 	
-	console1.log('run');
+	console.log('run');
 	init();
 });

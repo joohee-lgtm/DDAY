@@ -10,8 +10,11 @@ module.exports = {
     util: './src/util.js',
   },
   devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+  },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
       title: 'DDAY'
     })
