@@ -5,9 +5,24 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    app: './src/index.js',
-    util: './src/util.js',
+  /**
+   * ??? webpack 5 부터 지원?
+   * https://webpack.js.org/guides/code-splitting/#entry-dependencies
+   entry: {
+    index: {
+      import: './src/index.js', 
+      dependOn: 'shared'
+    },
+    log: {
+      import: "./src/logger.js", 
+      dependOn: 'shared'
+    },
+    shared: 'query-string',    
+  },
+  */
+ entry: {
+    index: './src/index.js',
+    log: './src/logger.js',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -23,6 +38,11 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   module : {
     rules: [
