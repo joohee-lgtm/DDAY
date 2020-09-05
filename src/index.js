@@ -82,20 +82,12 @@ const init = () => {
 	displayRemainTime(eventDate);
 }
 
-const getInitializeLog = () => {
-
-	return import(/* webpackChunkName: "lodash" */ 'lodash').then(({default: _}) => {
-		
-		return (...args) => {
-			console.log(args);
-
+const getInitializeLog = async () => {
+	const {default: _} = await import(/* webpackChunkName: "lodash" */ 'lodash');
+	
+	return (...args) => {
 			return _.join(args, ' ');
 		}
-		
-	}).catch(err => {
-		console.warn('fail load split chunk lib');
-	})
-	
 }
 
 window.addEventListener("DOMContentLoaded", function() {
