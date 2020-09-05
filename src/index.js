@@ -82,6 +82,22 @@ const init = () => {
 	displayRemainTime(eventDate);
 }
 
+const getInitializeLog = () => {
+
+	return import(/* webpackChunkName: "lodash" */ 'lodash').then(({default: _}) => {
+		
+		return (...args) => {
+			console.log(args);
+
+			return _.join(args, ' ');
+		}
+		
+	}).catch(err => {
+		console.warn('fail load split chunk lib');
+	})
+	
+}
+
 window.addEventListener("DOMContentLoaded", function() {
 	const basicElement = `
 	<div class="welcome"></div>
@@ -92,6 +108,8 @@ window.addEventListener("DOMContentLoaded", function() {
 	eventDateArea = document.querySelector("#event_area");
 	remainDateArea = document.querySelector("#remain_area");
 	
-	console.log('run');
+	getInitializeLog().then(logger => {
+		console.log(logger('welcome', 'D-Day', 'counter'));
+	});
 	init();
 });
