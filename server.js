@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -7,7 +8,7 @@ const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath,
+    publicPath: path.resolve(__dirname, '/'),
 }));
 
 app.listen(3000, function() {
