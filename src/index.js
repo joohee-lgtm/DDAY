@@ -88,7 +88,7 @@ const init = () => {
 }
 
 const getInitializeLog = async () => {
-	const {default: _} = await import(/* webpackChunkName: "lodash" */ 'lodash');
+	const {default: _} = await import(/* webpackChunkName: "lodash", webpackPrefetch: true */ 'lodash');
 	
 	return (...args) => {
 			return _.join(args, ' ');
