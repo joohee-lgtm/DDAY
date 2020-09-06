@@ -7,8 +7,8 @@ let eventDateArea;
 let remainDateArea;
 let calendarInstance;
 
-const getDateTime = () => {
-	const timeFromQuery = filterDuplicatedQuery("time");
+const getDateTimeFromQuery = () => {
+	const timeFromQuery = filterDuplicatedQuery("datetime");
 	const dateTime = new Date(parseInt(timeFromQuery, 10));
 
 	if(isNaN(dateTime.getTime())) {
@@ -18,11 +18,9 @@ const getDateTime = () => {
 	return dateTime;
 }
 
-
 const displayEventDate = (eventDate) => {
 	eventDateArea.innerHTML = `<span>${eventDate} 날짜 까지<img src="${jae}" /></span>`;
 }
-
 
 const displayRemainTime = (eventDate) => {
 	const callFrame = () => {
@@ -42,8 +40,21 @@ const displayRemainTime = (eventDate) => {
 	requestAnimationFrame(callFrame);
 }
 
+const onClickCalendarConfirm = () => {
+	const selectedTime = calendarInstance.getDateTime();
+
+	if(isNaN(selectedTime)) {
+		alert('날짜를 제대로 선택하셈');
+		return ;
+	}
+
+	
+	window.location.replace(`?datetime=${selectedTime}`);
+}
+
 const displayCalendar = () => {
 	const calendarRoot = document.querySelector("#date_area");
+	const confirmButton = calendarRoot.querySelector("button");
 
 	if(!calendarInstance) {
 		calendarInstance = new Calendar();
@@ -51,15 +62,16 @@ const displayCalendar = () => {
 			console.log('calendar initialize');
 		})
 		calendarInstance.initialize(calendarRoot.querySelector(".calendar"));
-		
 	}
-	calendarInstance.show();
+
+	confirmButton.addEventListener('click', onClickCalendarConfirm)
+	calendarRoot.style.display = '';
 }
 
 const init = () => {
 	// 1. 쿼리 확인
-	// ex) date=1601859600000 
-	let eventDate = getDateTime();
+	// ex) datetime=1601859600000 
+	let eventDate = getDateTimeFromQuery();
 
 	if(!eventDate) {
 		// 1.5. 캘린더 보여주기 => 날짜 선택하기 => 쿼리 바꾸기
@@ -67,6 +79,8 @@ const init = () => {
 
 		return ;
 	}
+	const calendarRoot = document.querySelector("#date_area");
+	calendarRoot.style.display = 'none';
 
 	// 2. 화면에 현재 시간 및 남은 시간 표시하기
 	displayEventDate(eventDate);
@@ -85,8 +99,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	const basicElement = `
 	<div class="welcome"></div>
 	<div id="date_area">
-		<div class="calendar">
-		</div>
+		<div class="calendar"></div>
 		<button>계산하기</button>
 	</div>
     <p id="event_area"></p>
@@ -95,7 +108,7 @@ window.addEventListener("DOMContentLoaded", function() {
 	document.body.insertAdjacentHTML('afterbegin', basicElement)
 	eventDateArea = document.querySelector("#event_area");
 	remainDateArea = document.querySelector("#remain_area");
-	
+
 	getInitializeLog().then(logger => {
 		console.log(logger('welcome', 'D-Day', 'counter'));
 	});

@@ -1,4 +1,3 @@
-import {HOUR_UNIT, MINUTE_UNIT, SECOND_UNIT} from './util';
 import Emittery from 'emittery';
 
 class Calendar {
@@ -14,7 +13,6 @@ class Calendar {
         this.root = root;
         this.renderSelectArea();
         this.bindSelect();
-        this.hide();
         this.trigger('init');
     }
 
@@ -31,34 +29,23 @@ class Calendar {
         this.observer.off(eventName, callback);
     }
 
-    show() {
-        this.root.style.display = '';
-    }
-
-    hide() {
-        this.root.style.display = 'none';
-    }
-
     renderSelectArea() {        
-        const makeOption = (unitCount) => {
-            return new Array(unitCount).fill('').map((item, index) => 
-            `<option value=${index}>${index}</option>`);
-        }
         const template = `
-            <input name="date" type="date"></input>
-            <select name="hour">${makeOption(HOUR_UNIT)}</select>
-            <select name="minute">${makeOption(MINUTE_UNIT)}</select>
-            <select name="second">${makeOption(SECOND_UNIT)}</select>
+            <input name="datetime" type="datetime-local"></input>
         `;
 
         this.root.innerHTML = template;
     }
 
     bindSelect() {
-        this.dateInput = this.root.querySelector('[name="date"]');
-        this.hourInput = this.root.querySelector('[name="hour"]');
-        this.minuteInput = this.root.querySelector('[name="minute"]');
-        this.secondInput = this.root.querySelector('[name="second"]');
+        this.datetimeInput = this.root.querySelector('[name="datetime"]');
+    }
+
+
+    getDateTime() {
+        const value = this.datetimeInput.value;
+
+        return new Date(value).getTime();
     }
 }
 
