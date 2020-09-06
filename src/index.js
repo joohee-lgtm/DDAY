@@ -96,16 +96,6 @@ const getInitializeLog = async () => {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-	const basicElement = `
-	<div class="welcome"></div>
-	<div id="date_area">
-		<div class="calendar"></div>
-		<button>계산하기</button>
-	</div>
-    <p id="event_area"></p>
-	<p id="remain_area"></p>`;
-	
-	document.body.insertAdjacentHTML('afterbegin', basicElement)
 	eventDateArea = document.querySelector("#event_area");
 	remainDateArea = document.querySelector("#remain_area");
 

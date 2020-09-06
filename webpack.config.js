@@ -30,7 +30,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
-      title: 'DDAY'
+      template: "./src/index.html"
     })
   ],
   output: {
