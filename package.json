@@ -1,0 +1,42 @@
+{
+  "name": "DDAY",
+  "version": "1.0.0",
+  "description": "디데이 계산기",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack",
+    "server": "node server.js",
+    "start": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/real-dot-joohee/DDAY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/real-dot-joohee/DDAY/issues"
+  },
+  "homepage": "https://github.com/real-dot-joohee/DDAY#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.2",
+    "express": "^4.17.1",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "emittery": "^0.7.1",
+    "events-observer": "^1.0.1",
+    "lodash": "^4.17.20",
+    "query-string": "^6.13.1"
+  }
+}
