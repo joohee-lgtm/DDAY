@@ -34,6 +34,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "emittery": "^0.7.1",
+    "events-observer": "^1.0.1",
     "lodash": "^4.17.20",
     "query-string": "^6.13.1"
   }
