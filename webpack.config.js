@@ -21,7 +21,7 @@ module.exports = {
   },
   */
  entry: {
-    index: './src/index.js',
+    index: './src/script/index.js',
   },
   devtool: 'inline-source-map',
   devServer: {

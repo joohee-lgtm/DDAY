@@ -1,5 +1,5 @@
-import './style.css';
-import jae from './jrong.jpg';
+import '../style/index.css';
+import jae from '../asset/jrong.jpg';
 import {filterDuplicatedQuery, parseTimeStamp} from './util.js';
 import Calendar from './calendar.js';
 
