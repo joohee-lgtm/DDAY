@@ -1,14 +1,63 @@
+body {
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+  font-family: sans-serif;
+}
+
+.main {
+  margin-top: 50vh;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
 #event_area {
-  background-color: yellow;
+  font-size: 40px;
+  letter-spacing: -2px;
+  font-weight: 100;
 }
 
-#event_area img {
-  width: 200px;
+
+#event_area span {
+  position: relative;
+  color: #000000;
 }
 
-.welcome {
-  width: 300px;
-  height: 300px;
-  background: url("../asset/sally_clap.gif");
-  background-repeat: no-repeat;
+#event_area span::before {
+  content: " ";
+  display: inline-block;
+  height: 5px;
+  background-color: #ab0000;
+  width: 100%;
+  position: absolute;
+  bottom: 25px;
+  transform: rotate(8deg);
 }
+
+#remain_area {
+  margin-top: 5px;
+}
+
+#remain_area .direction {
+  font-size: 110px;
+  letter-spacing: -10px;
+  font-weight: 900;
+  color: #f0f8ff;
+  z-index: -1;
+  position: relative;
+  transform: scale(1, 0.8);
+}
+
+#remain_area .number {
+  margin-top: -45px;
+}
+
+#remain_area .dd, .hh, .mm, .ss{
+  font-weight: 900;
+  font-size: 55px;
+  color: rgba(0,0,0,0);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  letter-spacing: -8px;
+  margin: 0px 4px;
+}
+
+

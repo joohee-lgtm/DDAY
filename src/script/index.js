@@ -1,5 +1,6 @@
+import '../style/reset.css';
 import '../style/index.css';
-import jae from '../asset/jrong.jpg';
+import { format } from 'date-fns'
 import {filterDuplicatedQuery, parseTimeStamp} from './util.js';
 import Calendar from './calendar.js';
 
@@ -17,22 +18,31 @@ const getDateTimeFromQuery = () => {
 
 	return dateTime;
 }
-
+// http://localhost:3000/?datetime=1601859600000
 const displayEventDate = (eventDate) => {
-	eventDateArea.innerHTML = `<span>${eventDate} 날짜 까지<img src="${jae}" /></span>`;
+	const textArea = eventDateArea.querySelector('span');
+
+	textArea.innerHTML = format(eventDate, 'yyyy MM dd');
+	
+	eventDateArea.style.display = "";
 }
 
 const displayRemainTime = (eventDate) => {
+	const direction = remainDateArea.querySelector('.direction');
+	const dd = remainDateArea.querySelector('.dd');
+	const hh = remainDateArea.querySelector('.hh');
+	const mm = remainDateArea.querySelector('.mm');
+	const ss = remainDateArea.querySelector('.ss');
+
 	const callFrame = () => {
 		const remainTime = Date.now() - eventDate.getTime();
+		const {day, hour, minute, second} = parseTimeStamp(Math.abs(remainTime));
 
-		if(remainTime > 0) {
-			// 지나간 시간
-			return ;
-		}
-		const {day, hour, minute, second} = parseTimeStamp(remainTime);
-
-		remainDateArea.innerHTML = `<span>D-${day}:${hour}:${minute}:${second}</span>`;	
+		direction.innerHTML = remainTime > 0 ? "PLUS" : "MINUS";
+		dd.innerHTML = day;
+		hh.innerHTML = hour;
+		mm.innerHTML = minute;
+		ss.innerHTML = second;
 
 		requestAnimationFrame(callFrame);
 	}
