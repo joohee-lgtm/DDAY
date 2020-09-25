@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -21,7 +22,7 @@ module.exports = {
   },
   */
  entry: {
-    index: './src/index.js',
+    index: './src/script/index.js',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -29,6 +30,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
+    new MiniCssExtractPlugin({
+      chunkFilename: '[id].[contenthash].css',
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     })
@@ -54,17 +58,38 @@ module.exports = {
   module : {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [["@babel/plugin-transform-runtime",
+            {
+              "regenerator": true
+            }
+          ]]
+          }
+        }
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
-        ]
+        use: [ 
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]~[contenthash].[ext]'
+            }
+          }
+        ],
       }
     ]
   }

@@ -29,10 +29,10 @@ export const parseTimeStamp = (milsec) => {
 	const sec = remainSecond-day*DAY_TO_SEC-hour*HOUR_TO_SEC-min*MINUTE_TO_SEC;
 
 	return {
-		day: day,
-		hour: hour,
-		minute: min,
-		second: sec
+		day: day < 10 ? `0${day}` : day,
+		hour: hour < 10 ? `0${hour}` : hour,
+		minute: min < 10 ? `0${min}` : min,
+		second: sec < 10 ? `0${sec}` : sec
 	}
 }
 
